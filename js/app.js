@@ -1,4 +1,4 @@
-var app = angular.module('App', ['firebase', 'angular.filter', 'ngRoute', 'ui.bootstrap'])
+var app = angular.module('app', ['firebase', 'angular.filter', 'ngRoute', 'ui.bootstrap'])
 
 //Setting Up routes
 app.config(['$routeProvider', function($routeProvider){
@@ -6,9 +6,9 @@ app.config(['$routeProvider', function($routeProvider){
   //route to prompt sign in or survey taking
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/splash.html',
-      controller: 'MainController as mainCtrl'
+      templateUrl: 'partials/questionTmpl.html',
+      controller: 'QuestionCtrl as qCtrl'
     })
-    .otherwise({ redirectTo: '/shoppingList' });
+    .otherwise({ redirectTo: '/#' });
 
 }]);
