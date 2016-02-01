@@ -29,6 +29,9 @@ app.controller('QuestionCtrl',
         var hide1= 0;
         var hide2= 0;
         var hide3= 0;
+        var asset = [1, 2, 3]
+
+        this.asset = asset;
 
         this.createSurvey = function(){
           $location.path('/createSurvey');
