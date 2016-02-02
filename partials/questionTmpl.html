@@ -30,5 +30,34 @@
       <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
     </div>
 
+    <!--Textarea databinding template -->
+    <div ng-show = "qCtrl.hide2 > 0">
+      <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
+      <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
+      <button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</button>
+
+      <textarea ng-model = "qCtrl.asset[1]" placeholder = "Your respondants will put their answers here!"/>
+      <!--back button-->
+      <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
+    </div>
+
+    <!--Radio databinding template-->
+    <div ng-show = "qCtrl.hide3 > 0">
+      <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
+      <!--input shown when editing-->
+      <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
+      <button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</button>
+
+      <!--answers-->
+      <ol>
+        <li ng-repeat = "answer in qCtrl.asset[1]"><span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
+          <button class = "showme" ng-show = "answerEditor" ng-click = "answerEditor = !answerEditor">done</button>
+          <input ng-show = "answerEditor" ng-model = "answer"/>
+        </li>
+      </ol>
+      <!--back button-->
+      <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
+    </div>
+
   </div>
 </div>
