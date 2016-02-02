@@ -1,19 +1,33 @@
 <div ng-controller = "QuestionCtrl as qCtrl">
   <div class = "container">
 
-  <!--main buttones to choose what kind of question to make-->
+  <!--main buttons to choose what kind of question to make-->
 
-    <button ng-click = "qCtrl.chooseCheckbox()" ng-hide = "qCtrl.hide1 > 0">Click me to create a Checkbox question, when you want your responders to have the ability to choose more than one answer!</button>
+    <button ng-click = "qCtrl.chooseCheckbox()" ng-hide = "qCtrl.hide4 > 0">Click me to create a Checkbox question, when you want your responders to have the ability to choose more than one answer!</button>
 
-    <button ng-click = "qCtrl.chooseTextarea()">Click me to create Textarea question,  when you want your responders to give you long winded explanations!</button>
+    <button ng-click = "qCtrl.chooseTextarea()" ng-hide = "qCtrl.hide4 > 0">Click me to create Textarea question,  when you want your responders to give you long winded explanations!</button>
 
-    <button ng-click = "qCtrl.chooseRadio()">Click me to create Radio questions, when you want your responders to give you just one answer! Nuance be damned!</button>
+    <button ng-click = "qCtrl.chooseRadio()" ng-hide = "qCtrl.hide4 > 0">Click me to create Radio questions, when you want your responders to give you just one answer! Nuance be damned!</button>
 
   <!--Show and hide logic for making question assets-->
 
     <!--Checkbox Databinding Template-->
     <div ng-show = "qCtrl.hide1 > 0">
-      <h1>{{qCtrl.asset[0]}}</h1>
+      <!--question title, hides when editing-->
+      <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
+      <!--input shown when editing-->
+      <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
+      <button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</button>
+
+      <!--answers-->
+      <ol>
+        <li ng-repeat = "answer in qCtrl.asset[1]"><span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
+          <button class = "showme" ng-show = "answerEditor" ng-click = "answerEditor = !answerEditor">done</button>
+          <input ng-show = "answerEditor" ng-model = "answer"/>
+        </li>
+      </ol>
+      <!--back button-->
+      <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
     </div>
 
   </div>

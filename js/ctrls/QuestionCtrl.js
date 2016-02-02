@@ -29,7 +29,8 @@ app.controller('QuestionCtrl',
         var hide1= 0;
         var hide2= 0;
         var hide3= 0;
-        var asset = [1, 2, 3]
+        var hide4= 0
+        var asset = null;
 
         this.asset = asset;
 
@@ -42,19 +43,33 @@ app.controller('QuestionCtrl',
           //$location.path('/takeSurvey')
         }//close takeSurvey
 
+        this.backToQuestionSelector = function(){
+          this.hide1 = 0;
+          this.hide2 = 0;
+          this.hide3 = 0;
+          this.hide4 = 0;
+        }
+
         this.chooseCheckbox = function (){
-          //this shows the multiple choice creation div
+          //this shows the multiple choice creation div and sets the multiple choice question asset
+
+          this.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"]]
+
           this.hide1 = 1;
           this.hide2 = 0;
           this.hide3 = 0;
+          this.hide4 = 1;
 
         }//close chooseCheckbox
 
         this.chooseTextarea = function (){
-          //this shows the multiple choice creation div
+          //this shows the multiple choice creation div and sets the textarea asset
+
+          this.asset = ["Could you click this to ask a textarea question?"]
           this.hide1 = 0;
           this.hide2 = 1;
           this.hide3 = 0;
+          this.hide4 = 1;
 
         }//close chooseTextarea
 
@@ -63,6 +78,7 @@ app.controller('QuestionCtrl',
           this.hide1 = 0;
           this.hide2 = 0;
           this.hide3 = 1;
+          this.hide4 = 1;
 
         }//close chooseRadio
 
