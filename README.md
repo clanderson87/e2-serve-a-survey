@@ -8,11 +8,11 @@ Dependancies are handled via bower. First,
 * ```cd lib```
 
 Then:
-
+* ```bower init```
 * ```bower install jQuery```
-* ```bower install Angular```
-* ```bower install Angularfire```
-* ```bower install Angular```
-* ```bower install Bootstrap```
-* ```bower install Angular Filter```
-* ```bower install Angular Route```
+* ```bower install angularfire```
+* ```bower install angular```
+* ```bower install bootstrap```
+* ```bower install angular Filter```
+* ```bower install angular Route```
+* ```bower install materialize```
