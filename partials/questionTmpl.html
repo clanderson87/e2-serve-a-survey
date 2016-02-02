@@ -26,8 +26,9 @@
           <input ng-show = "answerEditor" ng-model = "answer"/>
         </li>
       </ol>
-      <!--back button-->
+      <!--back and save buttons-->
       <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
+      <button ng-click = "qCtrl.saveAsset()">Save</button>
     </div>
 
     <!--Textarea databinding template -->
@@ -36,9 +37,11 @@
       <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
       <button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</button>
 
+      <!--answer area-->
       <textarea ng-model = "qCtrl.asset[1]" placeholder = "Your respondants will put their answers here!"/>
-      <!--back button-->
+      <!--back and save buttons-->
       <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
+      <button ng-click = "qCtrl.saveAsset()">Save</button>
     </div>
 
     <!--Radio databinding template-->
@@ -50,13 +53,15 @@
 
       <!--answers-->
       <ol>
-        <li ng-repeat = "answer in qCtrl.asset[1]"><span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
+        <li ng-repeat = "answer in qCtrl.asset[1]">
+          <span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
           <button class = "showme" ng-show = "answerEditor" ng-click = "answerEditor = !answerEditor">done</button>
-          <input ng-show = "answerEditor" ng-model = "answer"/>
+          <input ng-show = "answerEditor" ng-model = "qCtrl.asset[1][$index]"/>
         </li>
       </ol>
-      <!--back button-->
+      <!--back and save buttons-->
       <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
+      <button ng-click = "qCtrl.saveAsset()">Save</button>
     </div>
 
   </div>
