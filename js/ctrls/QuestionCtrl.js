@@ -5,13 +5,15 @@ app.controller('QuestionCtrl',
   '$firebaseObject',
   '$window',
   '$location',
+  'authFactory',
 
     function(
       $scope,
       $firebaseArray,
       $firebaseObject,
       $window,
-      $location){
+      $location,
+      auth){
 
 
         //firebase vars
@@ -87,7 +89,7 @@ app.controller('QuestionCtrl',
         };//close chooseRadio
 
         this.saveAsset = function(){
-          ref.child("questions").child(this.surveyName).set(this.asset);
+          ref.child("question").child(this.surveyName).push(this.asset);
           console.log(this.asset)
           this.hide1 = 0;
           this.hide2 = 0;
