@@ -1,0 +1,19 @@
+{
+  "name": "e2-serve-a-survey",
+  "version": "1.0.0",
+  "description": "Survey MonkeyButt is a open source collaboration from TEAM QUESTIONPANTHER. The object is to create a Survey creator that doesn't deliver bad news. Three key features are:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcockhren/e2-serve-a-survey.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcockhren/e2-serve-a-survey/issues"
+  },
+  "homepage": "https://github.com/jcockhren/e2-serve-a-survey#readme"
+}
