@@ -21,18 +21,21 @@ app.controller('QuestionCtrl',
         var hide1= 0;
         var hide2= 0;
         var hide3= 0;
-        var hide4= 0
+        var hide4= 0;
         var asset = null;
-        // var aAsset = null;
         var user = "chris";
-
-        //testing if this plays nice with angular
+        var surveyName = "";
 
         this.asset = asset;
 
         this.createSurvey = function(){
           $location.path('/createSurvey');
         };//close createSurvey
+
+        this.setSurveyName = function(){
+          this.surveyName = $('.surveyName').val()
+          console.log(this.surveyName);
+        };
 
         this.takeSurvey = function(){
           //location to a survey, possibly via a random number gen?
@@ -51,14 +54,13 @@ app.controller('QuestionCtrl',
         this.chooseCheckbox = function (){
           //this shows the multiple choice creation div and sets the multiple choice question asset
 
-          this.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"]]
+          this.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"]];
 
-            ;
           this.hide1 = 1;
           this.hide2 = 0;
           this.hide3 = 0;
           this.hide4 = 1;
-          console.log(this.asset)
+
 
         };//close chooseCheckbox
 
@@ -85,7 +87,7 @@ app.controller('QuestionCtrl',
         };//close chooseRadio
 
         this.saveAsset = function(){
-          ref.child("questions").child(user).set(this.asset);
+          ref.child("questions").child(this.surveyName).set(this.asset);
           console.log(this.asset)
           this.hide1 = 0;
           this.hide2 = 0;

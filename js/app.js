@@ -9,6 +9,10 @@ app.config(['$routeProvider', function($routeProvider){
       templateUrl: 'partials/questionTmpl.html',
       controller: 'QuestionCtrl as qCtrl'
     })
+    .when('/login', {
+      templateUrl: 'partials/loginTmpl.html',
+      controller: 'AuthCtrl as aCtrl'
+    })
     .otherwise({ redirectTo: '/#' });
 
 }]);
