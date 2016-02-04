@@ -25,6 +25,7 @@ app.controller('AuthCtrl',
                             ref.child("users").child(authData.uid).set(userRefObj);
                         };
                     })
+                    $location.path('/makeSurvey');
                 }
             }
     ]

@@ -16,8 +16,15 @@ app.controller('QuestionCtrl',
       auth){
 
 
-        //firebase vars
+        //firebase vars and auth methods
         var ref = new Firebase("https://survey-creator.firebaseio.com/");
+        var authData = auth.$getAuth();
+
+          if (authData) {
+            console.log("Logged in as:", authData.uid);
+          } else {
+            console.log("Logged out");
+          }
 
         //setting up empty/global vars for questions and hides
         var hide1= 0;
