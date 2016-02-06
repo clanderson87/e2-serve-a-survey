@@ -1,17 +1,9 @@
 app.controller('QuestionCtrl',
   [
-  '$scope',
-  '$firebaseArray',
-  '$firebaseObject',
-  '$window',
   '$location',
   'authFactory',
 
     function(
-      $scope,
-      $firebaseArray,
-      $firebaseObject,
-      $window,
       $location,
       auth){
 
@@ -19,12 +11,11 @@ app.controller('QuestionCtrl',
         //firebase vars and auth methods
         var ref = new Firebase("https://survey-creator.firebaseio.com/");
         var authData = auth.$getAuth();
-
-          if (authData) {
-            console.log("Logged in as:", authData.uid);
-          } else {
-            console.log("Logged out");
-          }
+        if (authData) {
+          console.log("Logged in as:", authData.uid);
+        } else {
+          console.log("Logged out");
+        }
 
         //setting up empty/global vars for questions and hides
         var hide1= 0;
@@ -36,6 +27,7 @@ app.controller('QuestionCtrl',
         var surveyName = "";
 
         this.asset = asset;
+        this.authData = authData;
 
         this.createSurvey = function(){
           $location.path('/createSurvey');
@@ -63,7 +55,7 @@ app.controller('QuestionCtrl',
         this.chooseCheckbox = function (){
           //this shows the multiple choice creation div and sets the multiple choice question asset
 
-          this.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"]];
+          this.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox"];
 
           this.hide1 = 1;
           this.hide2 = 0;
@@ -76,7 +68,7 @@ app.controller('QuestionCtrl',
         this.chooseTextarea = function (){
           //this shows the multiple choice creation div and sets the textarea asset
 
-          this.asset = ["Could you click this to create a textarea question?", [""]];
+          this.asset = ["Could you click this to create a textarea question?", [""], "textarea"];
           this.hide1 = 0;
           this.hide2 = 1;
           this.hide3 = 0;
@@ -87,24 +79,33 @@ app.controller('QuestionCtrl',
         this.chooseRadio = function(){
           //this shows the multiple choice creation div and sets the radio asset
 
-          this.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"]];
+          this.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio"];
           this.hide1 = 0;
           this.hide2 = 0;
           this.hide3 = 1;
           this.hide4 = 1;
-
         };//close chooseRadio
 
         this.addAnswer = function(){
-          var x = this.asset[1].length + 1;
+          //adds an answer to the checkbox and radio function
+
+          var x = this.asset[1].length + 1
           var addedAnswer = "Click me to edit answer "+ x;
           console.log(this.asset[1]);
-          this.asset[1].push(addedAnswer);
+          this.asset[1].splice(x, 0, addedAnswer);
           console.log(this.asset[1]);
-        }
+        };//close addAnswer
+
+        this.killAnswer = function(index){
+          //deletes an answer from checkboxes and radios
+
+          this.asset[1].splice(index, 1);
+        };//close killAnswer
 
         this.saveAsset = function(){
-          ref.child("question").child(this.surveyName).push(this.asset);
+          //saves an asset to Firebase
+
+          ref.child("questions").child(this.surveyName).push(this.asset);
           console.log(this.asset)
           this.hide1 = 0;
           this.hide2 = 0;
@@ -112,6 +113,11 @@ app.controller('QuestionCtrl',
           this.hide4 = 0;
         };//close saveAsset
 
+        this.saveSurvey = function(){
+          //saves survey to firebase
+
+          ref.child("questions").child(this.surveyName).push(authData.uid)
+        }
 
 
       }//close controller function
