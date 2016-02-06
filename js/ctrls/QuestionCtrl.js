@@ -7,7 +7,6 @@ app.controller('QuestionCtrl',
       $location,
       auth){
 
-
         //firebase vars and auth methods
         var ref = new Firebase("https://survey-creator.firebaseio.com/");
         var authData = auth.$getAuth();
@@ -116,7 +115,7 @@ app.controller('QuestionCtrl',
         this.saveSurvey = function(){
           //saves survey to firebase
 
-          ref.child("questions").child(this.surveyName).push(authData.uid)
+          ref.child("questions").child(this.surveyName).child("creator").set(authData.uid)
         }
 
 
