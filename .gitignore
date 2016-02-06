@@ -1,3 +1,5 @@
 /lib/bower_components/
 /.DS_Store
 lib/node_modules
+controllers/play.js
+partials/play.html
