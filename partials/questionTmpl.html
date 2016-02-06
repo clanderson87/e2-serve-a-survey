@@ -1,4 +1,4 @@
-<div ng-controller = "QuestionCtrl as qCtrl">
+<div ng-controller = "QuestionCtrl">
   <div class = "container">
 
   <!--input for surver name-->
@@ -38,6 +38,7 @@
       <!--back and save buttons-->
       <button ng-click = "qCtrl.backToQuestionSelector()">Back</button>
       <button ng-click = "qCtrl.saveAsset()">Save</button>
+      <button ng-click = "qCtrl.addAnswer()">Add Answer</button>
     </div><!--end checkboxes-->
 
     <!--Textarea databinding template -->

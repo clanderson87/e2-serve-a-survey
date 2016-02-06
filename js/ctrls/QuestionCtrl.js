@@ -84,7 +84,7 @@ app.controller('QuestionCtrl',
 
         };//close chooseTextarea
 
-        this.chooseRadio = function (){
+        this.chooseRadio = function(){
           //this shows the multiple choice creation div and sets the radio asset
 
           this.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"]];
@@ -95,6 +95,14 @@ app.controller('QuestionCtrl',
 
         };//close chooseRadio
 
+        this.addAnswer = function(){
+          var x = this.asset[1].length + 1;
+          var addedAnswer = "Click me to edit answer "+ x;
+          console.log(this.asset[1]);
+          this.asset[1].push(addedAnswer);
+          console.log(this.asset[1]);
+        }
+
         this.saveAsset = function(){
           ref.child("question").child(this.surveyName).push(this.asset);
           console.log(this.asset)
@@ -103,6 +111,8 @@ app.controller('QuestionCtrl',
           this.hide3 = 0;
           this.hide4 = 0;
         };//close saveAsset
+
+
 
       }//close controller function
   ] //close controller dependancies bracket
