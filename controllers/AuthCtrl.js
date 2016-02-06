@@ -1,19 +1,7 @@
 app.controller('AuthCtrl',
-    ["$firebaseAuth",
-    "$firebaseObject",
-    "$location",
-    "authFactory",
-
-        function(
-            $firebaseAuth,
-            $firebaseObject,
-            $location,
-            authFactory){
-
-                var currentUser = null;
+    [
+        function(){
                 var ref = new Firebase("https://survey-creator.firebaseio.com");
-                var userRef = ref.child('users');
-
                 this.login = function(){
                     ref.authWithOAuthPopup("google", function(error, authData) {
                         if (error) {
