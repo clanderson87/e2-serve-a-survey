@@ -14,5 +14,4 @@ app.config(['$routeProvider', function($routeProvider){
       controller: 'QuestionCtrl as qCtrl'
     })
     .otherwise({ redirectTo: '/#' });
-
 }]);
