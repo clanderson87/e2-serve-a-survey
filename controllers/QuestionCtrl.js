@@ -2,7 +2,6 @@ app.controller('QuestionCtrl',
   [
   '$location',
   'authFactory',
-
     function(
       $location,
       auth){
@@ -25,7 +24,6 @@ app.controller('QuestionCtrl',
         var hide3= 0;
         var hide4= 0;
         var asset = null;
-        var user = "chris";
         var surveyName = "";
 
         vm.asset = asset;
