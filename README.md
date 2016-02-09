@@ -16,3 +16,9 @@ Then:
 * ```bower install Bootstrap```
 * ```bower install Angular Filter```
 * ```bower install Angular Route```
+
+Division of labor:
+
+* Chris is the Chief Core Functionality and Funny Logic Officer.
+* Leif is being promoted to Executive Vice President of UX and Web-Prettiness.
+* Jon is the Senior Database and Data-Squishing Consultant.
