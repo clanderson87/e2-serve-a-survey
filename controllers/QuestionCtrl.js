@@ -7,6 +7,9 @@ app.controller('QuestionCtrl',
       $location,
       auth){
 
+        //setting up this alias
+        var vm = this;
+
         //firebase vars and auth methods
         var ref = new Firebase("https://survey-creator.firebaseio.com/");
         var authData = auth.$getAuth();
@@ -25,97 +28,97 @@ app.controller('QuestionCtrl',
         var user = "chris";
         var surveyName = "";
 
-        this.asset = asset;
-        this.authData = authData;
+        vm.asset = asset;
+        vm.authData = authData;
 
-        this.createSurvey = function(){
+        vm.createSurvey = function(){
           $location.path('/createSurvey');
         };//close createSurvey
 
-        this.setSurveyName = function(){
-          this.surveyName = $('.surveyName').val()
-          console.log(this.surveyName);
+        vm.setSurveyName = function(){
+          vm.surveyName = $('.surveyName').val()
+          console.log(vm.surveyName);
         };
 
-        this.takeSurvey = function(){
+        vm.takeSurvey = function(){
           //location to a survey, possibly via a random number gen?
           //$location.path('/takeSurvey')
         };//close takeSurvey
 
-        this.backToQuestionSelector = function(){
+        vm.backToQuestionSelector = function(){
           //resets all hides and returns view back to main question selector
 
-          this.hide1 = 0;
-          this.hide2 = 0;
-          this.hide3 = 0;
-          this.hide4 = 0;
+          vm.hide1 = 0;
+          vm.hide2 = 0;
+          vm.hide3 = 0;
+          vm.hide4 = 0;
         };//close backToQuestionSelector
 
-        this.chooseCheckbox = function (){
+        vm.chooseCheckbox = function (){
           //this shows the multiple choice creation div and sets the multiple choice question asset
 
-          this.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox"];
+          vm.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox"];
 
-          this.hide1 = 1;
-          this.hide2 = 0;
-          this.hide3 = 0;
-          this.hide4 = 1;
+          vm.hide1 = 1;
+          vm.hide2 = 0;
+          vm.hide3 = 0;
+          vm.hide4 = 1;
 
 
         };//close chooseCheckbox
 
-        this.chooseTextarea = function (){
+        vm.chooseTextarea = function (){
           //this shows the multiple choice creation div and sets the textarea asset
 
-          this.asset = ["Could you click this to create a textarea question?", [""], "textarea"];
-          this.hide1 = 0;
-          this.hide2 = 1;
-          this.hide3 = 0;
-          this.hide4 = 1;
+          vm.asset = ["Could you click this to create a textarea question?", [""], "textarea"];
+          vm.hide1 = 0;
+          vm.hide2 = 1;
+          vm.hide3 = 0;
+          vm.hide4 = 1;
 
         };//close chooseTextarea
 
-        this.chooseRadio = function(){
+        vm.chooseRadio = function(){
           //this shows the multiple choice creation div and sets the radio asset
 
-          this.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio"];
-          this.hide1 = 0;
-          this.hide2 = 0;
-          this.hide3 = 1;
-          this.hide4 = 1;
+          vm.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio"];
+          vm.hide1 = 0;
+          vm.hide2 = 0;
+          vm.hide3 = 1;
+          vm.hide4 = 1;
         };//close chooseRadio
 
-        this.addAnswer = function(){
+        vm.addAnswer = function(){
           //adds an answer to the checkbox and radio function
 
-          var x = this.asset[1].length + 1
+          var x = vm.asset[1].length + 1
           var addedAnswer = "Click me to edit answer "+ x;
-          console.log(this.asset[1]);
-          this.asset[1].splice(x, 0, addedAnswer);
-          console.log(this.asset[1]);
+          console.log(vm.asset[1]);
+          vm.asset[1].splice(x, 0, addedAnswer);
+          console.log(vm.asset[1]);
         };//close addAnswer
 
-        this.killAnswer = function(index){
+        vm.killAnswer = function(index){
           //deletes an answer from checkboxes and radios
 
-          this.asset[1].splice(index, 1);
+          vm.asset[1].splice(index, 1);
         };//close killAnswer
 
-        this.saveAsset = function(){
+        vm.saveAsset = function(){
           //saves an asset to Firebase
 
-          ref.child("questions").child(this.surveyName).push(this.asset);
-          console.log(this.asset)
-          this.hide1 = 0;
-          this.hide2 = 0;
-          this.hide3 = 0;
-          this.hide4 = 0;
+          ref.child("questions").child(vm.surveyName).push(vm.asset);
+          console.log(vm.asset)
+          vm.hide1 = 0;
+          vm.hide2 = 0;
+          vm.hide3 = 0;
+          vm.hide4 = 0;
         };//close saveAsset
 
-        this.saveSurvey = function(){
+        vm.saveSurvey = function(){
           //saves survey to firebase
 
-          ref.child("questions").child(this.surveyName).child("creator").set(authData.uid)
+          ref.child("questions").child(vm.surveyName).child("creator").set(authData.uid)
         }
 
 
