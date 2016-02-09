@@ -1,6 +1,6 @@
 app.controller('AuthCtrl',
-    [
-        function(){
+    ["$location",
+        function($location){
                 var ref = new Firebase("https://survey-creator.firebaseio.com");
                 this.login = function(){
                     ref.authWithOAuthPopup("google", function(error, authData) {
@@ -12,7 +12,9 @@ app.controller('AuthCtrl',
                             userRefObj.username = authData.google.displayName;
                             ref.child("users").child(authData.uid).set(userRefObj);
                         };
+
                     })
+                    $location.path('/makeSurvey');
                 }
             }
     ]
