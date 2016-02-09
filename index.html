@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>App</title>
+
   <!--Materialize CSS-->
   <link rel="stylesheet" href="lib/bower_components/materialize/dist/css/materialize.min.css">
   <!--APP CSS-->
@@ -13,9 +14,10 @@
     <div ng-view></div>
 
   <!--jQuery -->
+  <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
   <!--Angular -->
   <script src="lib/bower_components/angular/angular.min.js"></script>
-  <!--Angular Bootstrap.js -->
+  <!--Angular Bootstrap.js-->
   <script src="lib/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <!-- Firebase -->
   <script src="lib/bower_components/firebase/firebase.js"></script>
@@ -32,7 +34,9 @@
   <script src="factories/authFactory.js"></script>
 
   <!-- controllers -->
-  <script src="controllers/AuthCtrl.js"></script>
+
+  <script src = "controllers/AuthCtrl.js"></script>
+  <script src = "controllers/QuestionCtrl.js"></script>
 
 </body>
 </html>

@@ -5,8 +5,13 @@ app.config(['$routeProvider', function($routeProvider){
 
   //route to prompt sign in or survey taking
   $routeProvider
-    .when('/login', {
-			templateUrl: 'partials/login.html',
-			controller: 'AuthCtrl as authCtrl'
-		})
+    .when('/', {
+      templateUrl: 'partials/loginTmpl.html',
+      controller: 'AuthCtrl as aCtrl'
+    })
+    .when('/makeSurvey', {
+      templateUrl: 'partials/questionTmpl.html',
+      controller: 'QuestionCtrl as qCtrl'
+    })
+    .otherwise({ redirectTo: '/#' });
 }]);
