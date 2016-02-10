@@ -15,14 +15,22 @@ app.controller('AnswerCtrl',
         var list = $firebaseArray(questionRef);
 
         vm.getFirebaseList = function(){
-          console.log(list)
           list.$loaded()
             .then(function(questionList) {
+
               var x = Math.floor((Math.random() * questionList.length - 1) + 1);
-              var pumpkin = questionList[x];
-              console.log("x is ", x);
-              console.log("pumpkin is ", pumpkin);
-              console.log(Object.keys(pumpkin));
+              var survey = questionList[x];
+              console.log(survey);
+              var gopn = Object.getOwnPropertyNames(survey);
+              console.log("gopn is "+ gopn);
+              var surveyKeys = Object.keys(survey);
+              console.log("surveyKeys is "+ surveyKeys);
+              var y = Math.floor((Math.random() * surveyKeys.length - 1) + 1);
+
+              var surveyProperty = surveyKeys[y];
+              console.log("surveyProperty is "+ surveyProperty);
+              console.log("Here goes nothing: "+ survey[surveyProperty])
+
 
           })
             .catch(function(error) {
