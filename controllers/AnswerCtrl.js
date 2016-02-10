@@ -11,40 +11,37 @@ app.controller('AnswerCtrl',
 
         //accessing firebase
         var questionRef = new Firebase('https://survey-creator.firebaseio.com/questions');
-
+        //aliasing array
         var list = $firebaseArray(questionRef);
 
         vm.getFirebaseList = function(){
+          //lists all surveys from Firebase
           list.$loaded()
             .then(function(questionList) {
+              //randomizing survey set returned by firebase
               var x = Math.floor((Math.random() * questionList.length - 1) + 1);
-              var survey = questionList[x];
-              var surveyKeys = Object.keys(survey);
-              // gets rid of $id
-              var idIndex = surveyKeys.indexOf("$id");
-              if (idIndex > 0){
-                surveyKeys.splice(idIndex, 1)
-              };
-              // gets rid of $priority
-              var priorityIndex = surveyKeys.indexOf("$priority");
-              if (priorityIndex > 0){
-                surveyKeys.splice(priorityIndex, 1)
-              };
-              // gets rid of creator
-              var creatorIndex = surveyKeys.indexOf("creator");
-              if (creatorIndex > 0){
-                surveyKeys.splice(creatorIndex, 1)
-              };
-              console.log("surveyKeys is "+ surveyKeys);
-              vm.surveyKeys = surveyKeys;
+              var surveyObj = questionList[x];
+              //setting up a clone surveyArray from surveyObj
+              vm.surveyArray = [];
+              angular.forEach(surveyObj, function(element) {
+                if(Array.isArray(element)) {
+                vm.surveyArray.push(element);
+              }
+                console.log(vm.surveyArray)
+              });
+              //making surveyObj accessable for submission
+              vm.surveyObj = surveyObj;
           })
             .catch(function(error) {
               console.log("Error:", error);
             }
           );
-        }();
 
+        }();//close getFirebaseList. Calls upon controller load
 
+        vm.submitAnswers = function(){
+
+        }
 
     }
   ]

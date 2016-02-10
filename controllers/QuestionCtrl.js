@@ -117,8 +117,7 @@ app.controller('QuestionCtrl',
 
         vm.saveSurvey = function(){
           //saves survey to firebase
-
-          ref.child("questions").child(vm.surveyName).child("creator").set(authData.uid)
+          ref.child("questions").child(vm.surveyName).child("creator").set(authData.uid);
         }
 
 

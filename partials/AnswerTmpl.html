@@ -1,2 +1,14 @@
 <div>I'm here</div>
 <button ng-click = "anCtrl.getFirebaseList()">Clickme</button>
+
+
+<ul>
+  <!--question title-->
+  <li ng-repeat = "question in anCtrl.surveyArray | unique track by $index"><h2>{{question[0]}}</h2>
+    <!--listing answers in array-->
+    <ul>
+      <li ng-repeat = "answer in question[1] | unique track by $index">{{answer}}</li>
+    </ul>
+
+  </li>
+</ul>
