@@ -17,27 +17,34 @@ app.controller('AnswerCtrl',
         vm.getFirebaseList = function(){
           list.$loaded()
             .then(function(questionList) {
-
               var x = Math.floor((Math.random() * questionList.length - 1) + 1);
               var survey = questionList[x];
-              console.log(survey);
-              var gopn = Object.getOwnPropertyNames(survey);
-              console.log("gopn is "+ gopn);
               var surveyKeys = Object.keys(survey);
+              // gets rid of $id
+              var idIndex = surveyKeys.indexOf("$id");
+              if (idIndex > 0){
+                surveyKeys.splice(idIndex, 1)
+              };
+              // gets rid of $priority
+              var priorityIndex = surveyKeys.indexOf("$priority");
+              if (priorityIndex > 0){
+                surveyKeys.splice(priorityIndex, 1)
+              };
+              // gets rid of creator
+              var creatorIndex = surveyKeys.indexOf("creator");
+              if (creatorIndex > 0){
+                surveyKeys.splice(creatorIndex, 1)
+              };
               console.log("surveyKeys is "+ surveyKeys);
-              var y = Math.floor((Math.random() * surveyKeys.length - 1) + 1);
-
-              var surveyProperty = surveyKeys[y];
-              console.log("surveyProperty is "+ surveyProperty);
-              console.log("Here goes nothing: "+ survey[surveyProperty])
-
-
+              vm.surveyKeys = surveyKeys;
           })
             .catch(function(error) {
               console.log("Error:", error);
             }
           );
         }();
+
+
 
     }
   ]
