@@ -5,28 +5,38 @@
       <li ng-repeat = "question in anCtrl.surveyArray | unique track by $index">
         <!--question title-->
         <h2>{{question[0]}}</h2>
+
         <!--display for checkboxes-->
         <div ng-show = "question[2] === 'checkbox'">
           <!--listing answers in question[1]array-->
           <ul>
-            <li ng-repeat = "answer in question[1] | unique track by $index"><input type = "checkbox">{{answer}}</li>
+            <li ng-repeat = "answer in question[1] | unique track by $index">
+              <input type = "checkbox"/>{{answer}}
+            </li>
           </ul>
-        </div>
+        </div><!--close checkboxes-->
+
         <!--display for textarea-->
         <div ng-show = "question[2] === 'textarea'">
           <!--listing answers in question[1]array-->
           <ul>
-            <li ng-repeat = "answer in question[1] | unique track by $index"><textarea placeholder = "Put your answer here!">{{answer}}</textarea></li>
+            <li ng-repeat = "answer in question[1] | unique track by $index">
+              <textarea placeholder = "Put your answer here!"/>{{answer}}</textarea>
+            </li>
           </ul>
-        </div>
+        </div><!--close textarea-->
+
         <!--display for radio-->
         <div ng-show = "question[2] === 'radio'">
           <!--listing answers in question[1]array-->
           <ul>
-            <li ng-repeat = "answer in question[1] | unique track by $index"><textarea placeholder = "Put your answer here!">{{answer}}</textarea></li>
+            <li ng-repeat = "answer in question[1] | unique track by $index">
+              <input type = "radio" name = "{{question[0]}}"/>{{answer}}
+            </li>
           </ul>
-        </div>
+        </div><!--close radio-->
       </li>
+      <button ng-click = "">Submit</button>
     </form>
   </ul>
 </div>

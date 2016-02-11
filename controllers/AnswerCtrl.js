@@ -1,10 +1,12 @@
 app.controller('AnswerCtrl',
   ['$firebaseArray',
   '$firebaseObject',
+  'authFactory'
 
     function(
       $firebaseArray,
-      $firebaseObject){
+      $firebaseObject,
+      auth){
 
         //alising this
         var vm = this;
@@ -41,6 +43,7 @@ app.controller('AnswerCtrl',
 
         vm.submitAnswers = function(){
 
+          auth.ref.child("answers").child(vm.survey.creator).child(vm.survey.$id).push()
         }
 
     }
