@@ -26,7 +26,7 @@ app.controller('AnswerCtrl',
               angular.forEach(surveyObj, function(element) {
                 if(Array.isArray(element)) {
                 vm.surveyArray.push(element);
-              }
+              };
                 console.log(vm.surveyArray)
               });
               //making surveyObj accessable for submission
@@ -37,7 +37,7 @@ app.controller('AnswerCtrl',
             }
           );
 
-        }();//close getFirebaseList. Calls upon controller load
+        }();//close getFirebaseList. IIFE Calls upon controller load.
 
         vm.submitAnswers = function(){
 

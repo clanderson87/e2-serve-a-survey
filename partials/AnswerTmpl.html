@@ -1,14 +1,32 @@
-<div>I'm here</div>
-<button ng-click = "anCtrl.getFirebaseList()">Clickme</button>
-
-
-<ul>
-  <!--question title-->
-  <li ng-repeat = "question in anCtrl.surveyArray | unique track by $index"><h2>{{question[0]}}</h2>
-    <!--listing answers in array-->
-    <ul>
-      <li ng-repeat = "answer in question[1] | unique track by $index">{{answer}}</li>
-    </ul>
-
-  </li>
-</ul>
+<div class = "container">
+  <ul>
+    <form>
+      <!--repeating question assets-->
+      <li ng-repeat = "question in anCtrl.surveyArray | unique track by $index">
+        <!--question title-->
+        <h2>{{question[0]}}</h2>
+        <!--display for checkboxes-->
+        <div ng-show = "question[2] === 'checkbox'">
+          <!--listing answers in question[1]array-->
+          <ul>
+            <li ng-repeat = "answer in question[1] | unique track by $index"><input type = "checkbox">{{answer}}</li>
+          </ul>
+        </div>
+        <!--display for textarea-->
+        <div ng-show = "question[2] === 'textarea'">
+          <!--listing answers in question[1]array-->
+          <ul>
+            <li ng-repeat = "answer in question[1] | unique track by $index"><textarea placeholder = "Put your answer here!">{{answer}}</textarea></li>
+          </ul>
+        </div>
+        <!--display for radio-->
+        <div ng-show = "question[2] === 'radio'">
+          <!--listing answers in question[1]array-->
+          <ul>
+            <li ng-repeat = "answer in question[1] | unique track by $index"><textarea placeholder = "Put your answer here!">{{answer}}</textarea></li>
+          </ul>
+        </div>
+      </li>
+    </form>
+  </ul>
+</div>
