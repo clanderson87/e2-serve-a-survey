@@ -12,7 +12,7 @@
           <!--listing answers in question[1]array-->
           <ul>
             <li ng-repeat = "answer in question[1] | unique track by $index">
-              <input type = "checkbox"/>{{answer}}
+              <input ng-model="anCtrl.responseAsset" ng-true-value="'anCtrl.responseAsset.push(answer)'" ng-false-value="anCtrl.responseAsset.splice(answer, 1)" type = "checkbox"/>{{answer}}
             </li>
           </ul>
         </div><!--close checkboxes-->
