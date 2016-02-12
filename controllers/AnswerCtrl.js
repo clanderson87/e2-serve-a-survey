@@ -1,7 +1,7 @@
 app.controller('AnswerCtrl',
   ['$firebaseArray',
   '$firebaseObject',
-  'authFactory'
+  'authFactory',
 
     function(
       $firebaseArray,
@@ -15,6 +15,9 @@ app.controller('AnswerCtrl',
         var questionRef = new Firebase('https://survey-creator.firebaseio.com/questions');
         //aliasing array
         var list = $firebaseArray(questionRef);
+
+        //answer asset
+        vm.responseAsset = [];
 
         vm.getFirebaseList = function(){
           //lists all surveys from Firebase
@@ -42,8 +45,9 @@ app.controller('AnswerCtrl',
         }();//close getFirebaseList. IIFE Calls upon controller load.
 
         vm.submitAnswers = function(){
-
-          auth.ref.child("answers").child(vm.survey.creator).child(vm.survey.$id).push()
+          vm.responseAsset.push(vm.surveyArray[0][0])
+          console.log(vm.responseAsset);
+          // auth.ref.child("answers").child(vm.surveyObj.creator).child(vm.surveyObj.$id).child(vm.surveyArray[0][0]).push()
         }
 
     }

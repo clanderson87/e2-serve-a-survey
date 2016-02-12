@@ -1,8 +1,9 @@
 <div class = "container">
   <ul>
     <form>
+
       <!--repeating question assets-->
-      <li ng-repeat = "question in anCtrl.surveyArray | unique track by $index">
+      <li ng-repeat = "question in anCtrl.surveyArray | limitTo: 1 | unique track by $index">
         <!--question title-->
         <h2>{{question[0]}}</h2>
 
@@ -36,7 +37,7 @@
           </ul>
         </div><!--close radio-->
       </li>
-      <button ng-click = "">Submit</button>
+      <button ng-click="anCtrl.submitAnswers()">Submit</button>
     </form>
   </ul>
 </div>
