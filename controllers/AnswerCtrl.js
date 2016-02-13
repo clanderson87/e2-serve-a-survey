@@ -60,32 +60,37 @@ app.controller('AnswerCtrl',
 
         }();//close getFirebaseList. IIFE Calls upon controller load.
 
-        //pushes answer into the responseAsset
-        vm.pushAnswer = function(index){
+        //pushes answer into the responseAsset for button questions
+        vm.pushAnswerButtons = function(index){
+          if (vm.responseAsset.length <= vm.surveyArray[0][1].length){
           vm.responseAsset.push(index);
-          console.log(vm.responseAsset);
         }
+        };
+
+        vm.pushAnswerRadio = function(){
+          console.log(vm.responseAsset);
+        };
 
         //pushes the responseAssets to firebase,
         vm.submitAnswers = function(){
           //aliasing into firebase friendly keys
           var creator = vm.surveyObj.creator;
-          console.log(creator);
           var currentQuestionTitle = vm.surveyArray[0][0];
-          console.log(currentQuestionTitle);
           var responseAsset = vm.responseAsset;
-          console.log(responseAsset);
           var surveyNameKey = vm.surveyNameKey;
-
-          vm.responseAsset.unshift(vm.surveyArray[0][0])
-          console.log("vm.responseAsset is " +vm.responseAsset);
+          //writing to firebase
           ref.child("answers")
             .child(creator)
               .child(surveyNameKey)
                 .child(currentQuestionTitle)
                   .push(responseAsset);
+          console.log("now vm.responseAsset is ", vm.responseAsset)
+          //deletes index zero, reveals new question
           vm.surveyArray.shift();
+          //zeroes responseAsset, saves on bandwidth
+          vm.responseAsset = [];
           console.log("now vm.surveyArray is ", vm.surveyArray);
+          //ends survey if no more questions
           if (vm.surveyArray.length < 1){
             $location.path('/login');
           }
