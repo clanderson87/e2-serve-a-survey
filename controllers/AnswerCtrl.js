@@ -3,19 +3,22 @@ app.controller('AnswerCtrl',
   '$firebaseObject',
   '$location',
   'authFactory',
+  'refFactory',
 
     function(
       $firebaseArray,
       $firebaseObject,
       $location,
-      auth){
+      auth,
+      refFactory){
 
         //alising this
         var vm = this;
 
         //accessing firebase
-        var ref = new Firebase('https://survey-creator.firebaseio.com/');
-        var questionRef = new Firebase('https://survey-creator.firebaseio.com/questions');
+        var ref = refFactory.ref;
+        var questionRef = refFactory.ref.child('questions');
+        // console.log(questionRef);
 
         //auth getters
         var authData = auth.$getAuth();
@@ -60,16 +63,13 @@ app.controller('AnswerCtrl',
 
         }();//close getFirebaseList. IIFE Calls upon controller load.
 
-        //pushes answer into the responseAsset for button questions
         vm.pushAnswerButtons = function(index){
+        //pushes answer into the responseAsset for button questions
           if (vm.responseAsset.length < vm.surveyArray[0][1].length){
+            //allows user to chose only up to the total number of makimum answers.
           vm.responseAsset.push(index)
         }
         console.log("after clicking, vm.responseAsset is ", vm.responseAsset)
-        };
-
-        vm.pushAnswerRadio = function(){
-          console.log(vm.responseAsset);
         };
 
         //pushes the responseAssets to firebase,
