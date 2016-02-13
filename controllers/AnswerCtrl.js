@@ -62,9 +62,10 @@ app.controller('AnswerCtrl',
 
         //pushes answer into the responseAsset for button questions
         vm.pushAnswerButtons = function(index){
-          if (vm.responseAsset.length <= vm.surveyArray[0][1].length){
-          vm.responseAsset.push(index);
+          if (vm.responseAsset.length < vm.surveyArray[0][1].length){
+          vm.responseAsset.push(index)
         }
+        console.log("after clicking, vm.responseAsset is ", vm.responseAsset)
         };
 
         vm.pushAnswerRadio = function(){
