@@ -2,17 +2,19 @@ app.controller('QuestionCtrl',
   [
   '$location',
   'authFactory',
-
+  'refFactory',
     function(
       $location,
-      auth){
+      auth,
+      refFactory){
 
         //setting up this alias
         var vm = this;
 
         //firebase vars and auth methods
-        var ref = new Firebase("https://survey-creator.firebaseio.com/");
+        var ref = refFactory.ref;
         var authData = auth.$getAuth();
+
         if (authData) {
           console.log("Logged in as:", authData.uid);
         } else {
@@ -25,7 +27,6 @@ app.controller('QuestionCtrl',
         var hide3= 0;
         var hide4= 0;
         var asset = null;
-        var user = "chris";
         var surveyName = "";
 
         vm.asset = asset;

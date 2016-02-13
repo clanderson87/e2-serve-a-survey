@@ -1,10 +1,11 @@
 app.controller('AuthCtrl',
     ["$location",
-        function($location){
+    "refFactory",
+        function($location, refFactory){
                 //aliasing this as vm
                 var vm = this;
                 //firebase reference
-                var ref = new Firebase("https://survey-creator.firebaseio.com");
+                var ref = refFactory.ref;
                 //login function
                 vm.login = function(){
                     ref.authWithOAuthPopup("google", function(error, authData) {
@@ -18,7 +19,7 @@ app.controller('AuthCtrl',
                         };
 
                     })
-                    //switiches view to survey creation
+
                     $location.path('/makeSurvey');
                 }
             }
