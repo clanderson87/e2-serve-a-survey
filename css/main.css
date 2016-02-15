@@ -1,3 +1,21 @@
+
+/*animation for trickery - bounceout*/
+.animated-class{
+  &.ng-enter {
+    -webkit-animation: bounceIn 1s;
+    -moz-animation: bounceIn 1s;
+    -ms-animation: bounceIn 1s;
+    animation: bounceIn 1s;
+  }
+  &.ng-leave {
+    -webkit-animation: bounceOut 1s;
+    -moz-animation: bounceOut 1s;
+    -ms-animation: bounceOut 1s;
+    animation: bounceOut 1s;
+  }
+}
+
+/*For the sidebar*/
 .leftNav {
     list-style-type: none;
     margin: 0;
