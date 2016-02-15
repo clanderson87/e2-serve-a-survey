@@ -1,9 +1,11 @@
 app.controller('responseCtrl',
   ['$firebaseArray',
+  '$firebaseObject',
   'authFactory',
   'refFactory',
     function(
       $firebaseArray,
+      $firebaseObj,
       auth,
       refFactory){
 
@@ -18,18 +20,32 @@ app.controller('responseCtrl',
           console.log("Logged out");
         };
 
-        //grabbing initial ref
+        //grabbing initial ref, users Surveys
         var ref = refFactory.ref;
         var userSurveys = $firebaseArray(ref.child('answers').child(authData.uid));
+
+        vm.surveysList = [];
 
         var getUserSurveys = function(){
           userSurveys.$loaded()
             .then(function(surveyList){
-              console.log(surveyList)
-
+              vm.surveyList = surveyList;
+              console.log(vm.surveyList)
+              surveyList.forEach(function(question){
+                console.log(question);
+              });
             })
           }();
 
+        vm.displayResponses = function(surveyTitle){
+          var thisSurveyObj = ref.child('answers').child(authData.uid).child(surveyTitle).once('value', function(snapshot){
+              snapshot.forEach(function(childSnapshot){
+                console.log(childSnapshot);
+                var childData = childSnapshot.val()
+                console.log(childData);
+              })
+          });
+          }
 
 
 }])

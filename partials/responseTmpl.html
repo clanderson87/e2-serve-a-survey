@@ -1,1 +1,7 @@
-<div></div>
+<div class = "container">
+  <ul>
+    <li ng-repeat = "question in rCtrl.surveyList">
+      <button ng-click = "rCtrl.displayResponses(question.$id)">{{question.$id}}</button>
+    </li>
+  </ul>
+</div>
