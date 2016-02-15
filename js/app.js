@@ -13,5 +13,9 @@ app.config(['$routeProvider', function($routeProvider){
       templateUrl: 'partials/questionTmpl.html',
       controller: 'QuestionCtrl as qCtrl'
     })
+    .when('/takeSurvey', {
+      templateUrl: 'partials/AnswerTmpl.html',
+      controller: 'AnswerCtrl as anCtrl'
+    })
     .otherwise({ redirectTo: '/#' });
 }]);

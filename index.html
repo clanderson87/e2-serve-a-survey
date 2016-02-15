@@ -5,7 +5,7 @@
   <title>App</title>
 
   <!--Materialize CSS-->
-  <link rel="stylesheet" href="lib/bower_components/materialize/dist/css/materialize.min.css">
+  <!-- <link rel="stylesheet" href="lib/bower_components/materialize/dist/css/materialize.min.css"> -->
   <!--APP CSS-->
   <link rel="stylesheet" href="css/main.css">
 </head>
@@ -14,7 +14,8 @@
     <div ng-view></div>
 
   <!--jQuery -->
-  <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <script src="lib/bower_components/jQuery/dist/jquery.min.js"></script>
   <!--Angular -->
   <script src="lib/bower_components/angular/angular.min.js"></script>
   <!--Angular Bootstrap.js-->
@@ -31,12 +32,14 @@
   <script src="js/app.js"></script>
 
   <!-- factories-->
-  <script src="factories/authFactory.js"></script>
+  <script src = "factories/authFactory.js"></script>
+  <script src = "factories/refFactory.js"></script>
 
   <!-- controllers -->
-
   <script src = "controllers/AuthCtrl.js"></script>
   <script src = "controllers/QuestionCtrl.js"></script>
+  <script src = "controllers/AnswerCtrl.js"></script>
+
 
 </body>
 </html>

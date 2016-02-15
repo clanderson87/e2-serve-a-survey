@@ -2,16 +2,19 @@ app.controller('QuestionCtrl',
   [
   '$location',
   'authFactory',
+  'refFactory',
     function(
       $location,
-      auth){
+      auth,
+      refFactory){
 
         //setting up this alias
         var vm = this;
 
         //firebase vars and auth methods
-        var ref = new Firebase("https://survey-creator.firebaseio.com/");
+        var ref = refFactory.ref;
         var authData = auth.$getAuth();
+
         if (authData) {
           console.log("Logged in as:", authData.uid);
         } else {
@@ -115,8 +118,7 @@ app.controller('QuestionCtrl',
 
         vm.saveSurvey = function(){
           //saves survey to firebase
-
-          ref.child("questions").child(vm.surveyName).child("creator").set(authData.uid)
+          ref.child("questions").child(vm.surveyName).child("creator").set(authData.uid);
         }
 
 
