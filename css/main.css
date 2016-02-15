@@ -1,0 +1,10 @@
+.leftNav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #473bc0;
+    height: 100%; 
+    position: fixed; 
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
