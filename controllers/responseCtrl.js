@@ -38,32 +38,41 @@ app.controller('responseCtrl',
           }();
 
         vm.displayResponses = function(surveyTitle){
-          var thisSurveyObj = ref.child('answers').child(authData.uid).child(surveyTitle).once('value', function(snapshot){
-              //might not even need this:
-              var thisKeyArray = [];
-              //instantiating accessable answerArray
-              vm.answerArray = []
-              snapshot.forEach(function(childSnapshot){
-                //trying to get questionNames to appear. Works!
-                var questionName = childSnapshot.key();
-                console.log("questionName is ", questionName)
-                //aliasing the value of the snapshot to childData, which is the question
-                var childData = childSnapshot.val()
-                console.log("childData is ", childData);
-                //iterating over childData by each answerKey
-                for (answerKey in childData){
-                  //renders -Khex style answerKeys, good.
-                  console.log("answerKey is ", answerKey)
-                  //accessing and aliasing actual answer using childData and answerKey
-                  var childDataAnswer = (childData[answerKey])
-                  console.log("childDataAnswer is ", childDataAnswer)
-                  //pushing to accessable vm.answerArray
-                  vm.answerArray.push(childDataAnswer);
-                  console.log("vm.answerArray is ", vm.answerArray);
+          //aliasing surveyRef to thisSurveyObj
+          var thisSurveyObj = ref.child('answers').child(authData.uid).child(surveyTitle);
 
-
-                }
+          thisSurveyObj.once('value', function(snapshot){
+            //might not even need this:
+            var thisKeyArray = [];
+            //instantiating accessable answerArray
+            vm.answerArray = []
+            snapshot.forEach(function(childSnapshot){
+              //trying to get questionNames to appear. Works!
+              var questionName = childSnapshot.key();
+              console.log("questionName is ", questionName)
+              //snapshotCeption
+              thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
+                var grandChildData = grandChildSnapshot.val();
+                console.log("grandChildData is ", grandChildData);
+                for (answerKey in grandChildData){
+                //accessing and aliasing actual answer using childData and answerKey
+                var grandChildAnswer = (grandChildData[answerKey])
+                //pushing to accessable vm.answerArray
+                console.log("grandChildAnswer is ", grandChildAnswer);
+              }
               })
+              /*
+              //aliasing the value of the snapshot to childData, which is the question
+              var childData = childSnapshot.val()
+              //iterating over childData by each answerKey
+              for (answerKey in childData){
+                //accessing and aliasing actual answer using childData and answerKey
+                var childDataAnswer = (childData[answerKey])
+                //pushing to accessable vm.answerArray
+                vm.answerArray.push(childDataAnswer);
+                console.log("vm.answerArray is ", vm.answerArray);
+              }*/
+            })
 
               /* ---------- commenting this out for later OVER THOUGHT EVERYTHING?!??!?------
               // snapshot.forEach(function(childSnapshot){
