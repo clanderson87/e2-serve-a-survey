@@ -1,4 +1,8 @@
-var app = angular.module('app', ['firebase', 'angular.filter', 'ngRoute', 'ui.bootstrap'])
+var app = angular.module('app', ['firebase', 'angular.filter', 'ngRoute', 'ngMaterial', 'ui.bootstrap'])
+	
+	.run(function($log){
+		$log.debug("Is running");
+	});
 
 //Setting Up routes
 app.config(['$routeProvider', function($routeProvider){
@@ -8,5 +12,8 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/login', {
 			templateUrl: 'partials/login.html',
 			controller: 'AuthCtrl as authCtrl'
+		})
+		.when('/main', {
+			templateUrl: 'partials/mainPage.html',
 		})
 }]);
