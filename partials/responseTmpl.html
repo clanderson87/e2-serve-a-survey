@@ -5,6 +5,6 @@
     </li>
   </ul>
   <ul>
-    <li ng-repeat = "answer in rCtrl.answerArray | unique track by $index">{{answer[0]}}
+    <li ng-repeat = "(key, value) in rCtrl.childData | unique track by $index">{{value.toString()}}
   </ul>
 </div>

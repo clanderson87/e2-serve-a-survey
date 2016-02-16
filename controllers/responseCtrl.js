@@ -29,13 +29,11 @@ app.controller('responseCtrl',
         var getUserSurveys = function(){
           userSurveys.$loaded()
             .then(function(surveyList){
+              //makes surveyList accessable
               vm.surveyList = surveyList;
               console.log(vm.surveyList)
-              surveyList.forEach(function(question){
-                console.log(question);
-              });
             })
-          }();
+          }(); //grabs user's surveys from firebase. IIFE called on controller load.
 
         vm.displayResponses = function(surveyTitle){
           //aliasing surveyRef to thisSurveyObj
@@ -46,6 +44,7 @@ app.controller('responseCtrl',
             vm.answerArray = []
             //instantiating questionArray
             var questionArray = [];
+            vm.questionObj = {};
             snapshot.forEach(function(childSnapshot){
               //trying to get questionNames to appear. Works!
               var questionName = childSnapshot.key();
@@ -54,6 +53,8 @@ app.controller('responseCtrl',
               thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
                 //aliasing gCSnapshot as gCData
                 var grandChildData = grandChildSnapshot.val();
+                //making gCData accessable
+                vm.grandChildData = grandChildData
                 console.log("grandChildData is ", grandChildData);
                 //iterating over each answerKey in grandChildData
                 for (answerKey in grandChildData){
@@ -73,42 +74,11 @@ app.controller('responseCtrl',
                   vm.answerArray.push(asset);
                   console.log("vm.answerArray is ", vm.answerArray);
               }
+
             })
           })
-
-              /* ---------- commenting this out for later OVER THOUGHT EVERYTHING?!??!?------
-              // snapshot.forEach(function(childSnapshot){
-              //   //aliasing the value of the snapshot to childData. childData should be the 'question' object itself. Unfortunately, it doesn't have an accessable name/title property
-              //   var childData = childSnapshot.val()
-              //   console.log("childData is ", childData);
-              //   //getting the keys of childData;
-              //   var childDataKeys = Object.keys(childData);
-              //   console.log("childDataKeys is ", childDataKeys);
-              //   //pushing childDataKeys into thisKeyArray
-              //   thisKeyArray.push(childDataKeys);
-              //   console.log("thisKeyArray is ", thisKeyArray);
-              //   //instantiating accessable thisAnswerArray
-              //   vm.thisAnswerArray = []
-              //   //for Each answerKey in thisKeyArray
-              //   thisKeyArray.forEach(function(answerKey){
-              //     console.log(answerKey);
-              //     //iterate over each answerKey
-              //     answerKey.forEach(function(answerGetter){
-              //       console.log(childData);
-              //       //calling question.answerGetter to access actual answer, usually renders an array
-              //       var answerArray = (childData[answerGetter])
-              //       console.log("answerArray is ", answerArray)
-              //       //for each item in answerArray, stringify the index and push it to accessable vm.thisAnswerArray
-              //       answerArray.forEach(function(answer){
-              //         vm.thisAnswerArray.push(answer.toString());
-              //         console.log("vm.thisAnswerArray is ", vm.thisAnswerArray);
-              //       })//close answerArray.forEach
-              //     })// close answerKey.forEach
-              //   })//close thisKeyArray.forEach
-              // })//close snapshot.forEach
-              ------------end overthought section ----------*/
-          });
-          }
+        })
+      }
 
 
 }])
