@@ -39,10 +39,25 @@ app.controller('responseCtrl',
 
         vm.displayResponses = function(surveyTitle){
           var thisSurveyObj = ref.child('answers').child(authData.uid).child(surveyTitle).once('value', function(snapshot){
+              var thisKeyArray = [];
               snapshot.forEach(function(childSnapshot){
-                console.log(childSnapshot);
                 var childData = childSnapshot.val()
-                console.log(childData);
+                console.log("childData is ", childData);
+                var childDataKeys = Object.keys(childData);
+                console.log("childDataKeys is ", childDataKeys);
+                thisKeyArray.push(childDataKeys);
+                console.log("thisKeyArray is ", thisKeyArray);
+                vm.thisAnswerArray = []
+                thisKeyArray.forEach(function(answerKey){
+                  answerKey.forEach(function(answerGetter){
+                    var answerArray = (childData[answerGetter])
+                    console.log("answerArray is ", answerArray)
+                    answerArray.forEach(function(answer){
+                      vm.thisAnswerArray.push(answer.toString());
+                      console.log("vm.thisAnswerArray is ", vm.thisAnswerArray);
+                    })
+                  });
+                })
               })
           });
           }
