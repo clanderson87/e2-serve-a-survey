@@ -42,10 +42,10 @@ app.controller('responseCtrl',
           var thisSurveyObj = ref.child('answers').child(authData.uid).child(surveyTitle);
 
           thisSurveyObj.once('value', function(snapshot){
-            //might not even need this:
-            var thisKeyArray = [];
             //instantiating accessable answerArray
             vm.answerArray = []
+            //instantiating questionArray
+            var questionArray = [];
             snapshot.forEach(function(childSnapshot){
               //trying to get questionNames to appear. Works!
               var questionName = childSnapshot.key();
@@ -57,6 +57,11 @@ app.controller('responseCtrl',
                 console.log("grandChildData is ", grandChildData);
                 //iterating over each answerKey in grandChildData
                 for (answerKey in grandChildData){
+                  //pushing qustionName
+                  if (questionArray.indexOf(questionName) < 1){
+                    questionArray.push(questionName);
+                  }
+                  console.log("questionArray is ", questionArray);
                   //accessing and aliasing actual answer using gCData and answerKey
                   var grandChildAnswer = (grandChildData[answerKey]);
                   //instantiating packagable asset
@@ -64,29 +69,9 @@ app.controller('responseCtrl',
                   //pushing questionName and grandChildAnswer together in asset
                   asset.push(questionName, grandChildAnswer)
                   console.log("asset is ", asset)
-                  if (vm.answerArray.length < 1){
-                  //pushing asset to accessable answerArray if vm.answerArray is empty.
-                    console.log("This happened once?")
-                    vm.answerArray.push(asset);
-                    console.log("vm.answerArray is ", vm.answerArray);
-                  // Otherwise, checks for duplicate questions.
-                  } else if (vm.answerArray.length > 0) {
-                    //iterates over everything in vm.answerArray
-                    for (var i = vm.answerArray.length - 1; i >= 0; i--) {
-                      //if index zero of asset is found to be the zero index of any other sub arrays in vm.answerArray, it shifts out of asset[0]
-                      if (asset[0] === vm.answerArray[i][0]){
-                        asset.shift();
-                        console.log("asset is now ", asset);
-                        //pushes array of answers into existing asset with question
-                        vm.answerArray[i].push(asset);
-                      } else {
-                        //otherwise, push the asset as is
-                        vm.answerArray.push(asset);
-                      }
-                      console.log("vm.answerArray is ", vm.answerArray);
-                    }
-
-                }
+                  //pushing the asset into an accessable array
+                  vm.answerArray.push(asset);
+                  console.log("vm.answerArray is ", vm.answerArray);
               }
             })
           })
