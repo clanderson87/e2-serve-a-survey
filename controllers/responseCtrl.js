@@ -49,7 +49,7 @@ app.controller('responseCtrl',
             snapshot.forEach(function(childSnapshot){
               //trying to get questionNames to appear. Works!
               var questionName = childSnapshot.key();
-              console.log("questionName is ", questionName)
+
               //snapshotCeption
               thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
                 //aliasing gCSnapshot as gCData
@@ -57,20 +57,39 @@ app.controller('responseCtrl',
                 console.log("grandChildData is ", grandChildData);
                 //iterating over each answerKey in grandChildData
                 for (answerKey in grandChildData){
-                  //accessing and aliasing actual answer using childData and answerKey
-                  var grandChildAnswer = (grandChildData[answerKey])
-                  //pushing to accessable vm.answerArray
-                  console.log("grandChildAnswer is ", grandChildAnswer);
+                  //accessing and aliasing actual answer using gCData and answerKey
+                  var grandChildAnswer = (grandChildData[answerKey]);
                   //instantiating packagable asset
                   var asset = [];
                   //pushing questionName and grandChildAnswer together in asset
                   asset.push(questionName, grandChildAnswer)
-                  //pushing asset to accessable answerArray
-                  vm.answerArray.push(asset);
-                  console.log(vm.answerArray);
+                  console.log("asset is ", asset)
+                  if (vm.answerArray.length < 1){
+                  //pushing asset to accessable answerArray if vm.answerArray is empty.
+                    console.log("This happened once?")
+                    vm.answerArray.push(asset);
+                    console.log("vm.answerArray is ", vm.answerArray);
+                  // Otherwise, checks for duplicate questions.
+                  } else if (vm.answerArray.length > 0) {
+                    //iterates over everything in vm.answerArray
+                    for (var i = vm.answerArray.length - 1; i >= 0; i--) {
+                      //if index zero of asset is found to be the zero index of any other sub arrays in vm.answerArray, it shifts out of asset[0]
+                      if (asset[0] === vm.answerArray[i][0]){
+                        asset.shift();
+                        console.log("asset is now ", asset);
+                        //pushes array of answers into existing asset with question
+                        vm.answerArray[i].push(asset);
+                      } else {
+                        //otherwise, push the asset as is
+                        vm.answerArray.push(asset);
+                      }
+                      console.log("vm.answerArray is ", vm.answerArray);
+                    }
+
                 }
-              })
+              }
             })
+          })
 
               /* ---------- commenting this out for later OVER THOUGHT EVERYTHING?!??!?------
               // snapshot.forEach(function(childSnapshot){

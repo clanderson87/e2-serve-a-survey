@@ -4,4 +4,7 @@
       <button ng-click = "rCtrl.displayResponses(question.$id)">{{question.$id}}</button>
     </li>
   </ul>
+  <ul>
+    <li ng-repeat = "answer in rCtrl.answerArray | unique track by $index">{{answer[0].toString()}}
+  </ul>
 </div>
