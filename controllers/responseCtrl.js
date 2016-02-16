@@ -52,26 +52,24 @@ app.controller('responseCtrl',
               console.log("questionName is ", questionName)
               //snapshotCeption
               thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
+                //aliasing gCSnapshot as gCData
                 var grandChildData = grandChildSnapshot.val();
                 console.log("grandChildData is ", grandChildData);
+                //iterating over each answerKey in grandChildData
                 for (answerKey in grandChildData){
-                //accessing and aliasing actual answer using childData and answerKey
-                var grandChildAnswer = (grandChildData[answerKey])
-                //pushing to accessable vm.answerArray
-                console.log("grandChildAnswer is ", grandChildAnswer);
-              }
+                  //accessing and aliasing actual answer using childData and answerKey
+                  var grandChildAnswer = (grandChildData[answerKey])
+                  //pushing to accessable vm.answerArray
+                  console.log("grandChildAnswer is ", grandChildAnswer);
+                  //instantiating packagable asset
+                  var asset = [];
+                  //pushing questionName and grandChildAnswer together in asset
+                  asset.push(questionName, grandChildAnswer)
+                  //pushing asset to accessable answerArray
+                  vm.answerArray.push(asset);
+                  console.log(vm.answerArray);
+                }
               })
-              /*
-              //aliasing the value of the snapshot to childData, which is the question
-              var childData = childSnapshot.val()
-              //iterating over childData by each answerKey
-              for (answerKey in childData){
-                //accessing and aliasing actual answer using childData and answerKey
-                var childDataAnswer = (childData[answerKey])
-                //pushing to accessable vm.answerArray
-                vm.answerArray.push(childDataAnswer);
-                console.log("vm.answerArray is ", vm.answerArray);
-              }*/
             })
 
               /* ---------- commenting this out for later OVER THOUGHT EVERYTHING?!??!?------
