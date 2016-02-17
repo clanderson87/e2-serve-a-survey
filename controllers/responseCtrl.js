@@ -48,24 +48,33 @@ app.controller('responseCtrl',
               //making childSnapshot usable
               var childData = childSnapshot.val();
               //adding childData as a property in accessable questionObj
-              vm.questionObj[questionName] = childData;
-            }).then(function(){
-              for (key in vm.questionObj){
-                console.log("vm.questionObj.key is ", key)
-              }
+              thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
+                //aliasing gCSnapshot as gCData
+                var grandChildData = grandChildSnapshot.val();
+                //making gCData accessable
+                vm.grandChildData = grandChildData
+                console.log("grandChildData is ", grandChildData);
+                var gcdKeys = Object.keys(grandChildData)
+                gcdKeys.forEach(function(key){
+                  vm.questionObj[questionName] = grandChildData[key];
+                })
+                console.log(vm.questionObj)
+            })
+
+            // vm.questionKeys = Object.keys(vm.questionObj);
+            // console.log("questionKeys is ", vm.questionKeys)
+            // vm.questionKeys.forEach(function(key){
+            //   console.log("vm.questionObj.keys is ", vm.questionObj[key])
+            //   var subKeys = Object.keys(vm.questionObj[key])
+            //   console.log("subKeys is ", subKeys)
             })
           })
         }
 
 
+
 }])
               // //snapshotCeption
-              // thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
-              //   //aliasing gCSnapshot as gCData
-              //   var grandChildData = grandChildSnapshot.val();
-              //   //making gCData accessable
-              //   vm.grandChildData = grandChildData
-              //   console.log("grandChildData is ", grandChildData);
               //   //iterating over each answerKey in grandChildData
               //   for (answerKey in grandChildData){
               //     //pushing qustionName

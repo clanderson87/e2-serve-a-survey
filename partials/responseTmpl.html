@@ -1,10 +1,10 @@
 <div class = "container">
   <ul>
-    <li ng-repeat = "question in rCtrl.surveyList">
-      <button ng-click = "rCtrl.displayResponses(question.$id)">{{question.$id}}</button>
+    <li ng-repeat = "survey in rCtrl.surveyList">
+      <button ng-click = "rCtrl.displayResponses(survey.$id)">{{survey.$id}}</button>
     </li>
   </ul>
   <ul>
-    <li ng-repeat = "(key, value) in rCtrl.questionObj | unique track by $index">{{key}} {{value}}
+    <li ng-repeat = "question in rCtrl.questionObj | unique track by $index">{{question}}
   </ul>
 </div>
