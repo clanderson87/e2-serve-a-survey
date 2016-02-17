@@ -2,6 +2,7 @@ var app = angular.module('app', ['firebase', 'angular.filter', 'ngRoute', 'ngMat
 	
 	.run(function($log){
 		$log.debug("Is running");
+
 	});
 
 //Setting Up routes
@@ -26,3 +27,5 @@ app.config(['$routeProvider', function($routeProvider){
     })
     .otherwise({ redirectTo: '/#' });
 }]);
+
+
