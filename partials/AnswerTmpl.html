@@ -1,4 +1,4 @@
-<div class = "container">
+<div class = "container" layout="column"  layout-align="space-around stretch">
   <ul>
 
       <!--displaying one question only?-->
@@ -13,7 +13,7 @@
           <!--listing answers in question[1]array-->
           <ul>
             <li ng-repeat = "answer in anCtrl.surveyArray[0][1] | unique track by $index">
-              <button ng-click = "anCtrl.pushAnswerButtons(answer)">{{answer}}</button>
+              <md-button ng-click = "anCtrl.pushAnswerButtons(answer)">{{answer}}</md-button>
             </li>
           </ul>
         </div><!--close checkboxes-->
@@ -37,6 +37,6 @@
             </li>
           </ul>
         </div><!--close radio-->
-        <button ng-click="anCtrl.submitAnswers()">Submit</button>
+        <md-button class="submitColor" ng-click="anCtrl.submitAnswers()">Submit</md-button>
   </ul>
-</div>
+</div> 

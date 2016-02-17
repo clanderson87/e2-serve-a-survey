@@ -1,11 +1,18 @@
 app.controller('AuthCtrl',
     ["$location",
     "refFactory",
-        function($location, refFactory){
+    "authFactory",
+        function($location, refFactory, authFactory){
                 //aliasing this as vm
                 var vm = this;
                 //firebase reference
                 var ref = refFactory.ref;
+                var authData = authFactory.$getAuth();
+                    if (authData) {
+                      console.log("Logged in as:", authData.uid);
+                    } else {
+                      console.log("Logged out");
+                    }
                 //login function
                 vm.login = function(){
                     ref.authWithOAuthPopup("google", function(error, authData) {
@@ -20,7 +27,7 @@ app.controller('AuthCtrl',
 
                     })
 
-                    $location.path('/makeSurvey');
+                    $location.path('/main');
                 }
             }
     ]

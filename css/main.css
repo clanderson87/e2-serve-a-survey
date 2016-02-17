@@ -1,0 +1,33 @@
+/*Confirming Material Font Across App*/
+*{
+	font-family: 'Roboto', sans-serif;
+}
+/*Material Checkboxes*/
+md-checkbox {
+  margin: 8px;
+  cursor: pointer;
+  padding-left: 18px;
+  padding-right: 0;
+  line-height: 26px;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+md-checkbox.md-checked.green .md-icon {
+ background-color: rgba(0, 255, 0, 0.87);
+}
+
+/*Disabling Bullets On the Lists*/
+#noBullets {
+  list-style-type: none;
+}
+
+/*Font Size for Main Buttons*/
+.md-raised-primary {
+  font-size: 20px;
+  background-color: #1976D2;
+}
+
+.submitColor{
+	background-color: #1976D2;
+}
