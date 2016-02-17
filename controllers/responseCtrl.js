@@ -24,14 +24,11 @@ app.controller('responseCtrl',
         var ref = refFactory.ref;
         var userSurveys = $firebaseArray(ref.child('answers').child(authData.uid));
 
-        vm.surveysList = [];
-
         var getUserSurveys = function(){
           userSurveys.$loaded()
             .then(function(surveyList){
               //makes surveyList accessable
               vm.surveyList = surveyList;
-              console.log(vm.surveyList)
             })
           }(); //grabs user's surveys from firebase. IIFE called on controller load.
 
@@ -57,10 +54,10 @@ app.controller('responseCtrl',
                 gcdKeys.forEach(function(key){
                   //checking is vm.answerObj has a [questionName] property
                   if(vm.answerObj.hasOwnProperty([questionName]) === false){
-                    //if not, put the value of this key into that property
+                    //if not, put the value of key into vm.answerObj[questionName] property
                     vm.answerObj[questionName] = grandChildData[key];
                   } else {
-                    //aliasing the array at the newly minted vm.answerObj[questionName] location so I can use .push without the console bithing me out
+                    //aliasing the array at the newly minted vm.answerObj[questionName] location so I can use .push without the console bitching me out
                     var thisAnswerArray = vm.answerObj[questionName];
                     //pushing the other keys into thisAnswerArray
                     thisAnswerArray.push(grandChildData[key].toString());
@@ -72,7 +69,6 @@ app.controller('responseCtrl',
             })
 
           })
-          console.log(vm.answerObj);
         }
 
 
