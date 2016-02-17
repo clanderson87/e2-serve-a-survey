@@ -17,8 +17,9 @@
 
     <button ng-click = "qCtrl.chooseRadio()" ng-hide = "qCtrl.hide4 > 0">Click me to create Radio questions, when you want your responders to give you just one answer! Nuance be damned!</button>
 
-    <!--button to save survey-->
+    <!--button to save survey, access previous data-->
     <button ng-click = "qCtrl.saveSurvey()" ng-show = "qCtrl.authData">Save Survey</button>
+    <a href="/viewResponses" ng-show = "qCtrl.authData">View responses</a>
 
   <!--Show and hide logic for making question assets-->
 
