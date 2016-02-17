@@ -1,0 +1,89 @@
+<div layout="column"  layout-align="space-around center">
+  <!--input for survey name-->
+  <div ng-hide = "qCtrl.surveyName.length > 1">
+    <h2>Enter a name for your survey</h2>
+    <input class = "surveyName"/>
+    <md-button class="submitColor" ng-click = "qCtrl.setSurveyName()">submit</md-button>
+  </div>
+
+  <!--display buttons and button maker-->
+  <div ng-show = "qCtrl.surveyName.length > 1">
+
+  <!--main buttons to choose what kind of question to make-->
+    <md-button ng-click = "qCtrl.chooseCheckbox()" ng-hide = "qCtrl.hide4 > 0">Click me to create a Checkbox question, when you want your responders to have the ability to choose more than one answer!</md-button>
+
+    <md-button ng-click = "qCtrl.chooseTextarea()" ng-hide = "qCtrl.hide4 > 0">Click me to create Textarea question,  when you want your responders to give you long winded explanations!</md-button>
+
+    <md-button ng-click = "qCtrl.chooseRadio()" ng-hide = "qCtrl.hide4 > 0">Click me to create Radio questions, when you want your responders to give you just one answer! Nuance be damned!</md-button>
+
+    <!--md-button to save survey-->
+    <md-button ng-click = "qCtrl.saveSurvey()" ng-show = "qCtrl.authData">Save Survey</md-button>
+
+  <!--Show and hide logic for making question assets-->
+
+    <!--CHECKBOX QUESTION DATABINDING TEMPLATE-->
+    <div ng-show = "qCtrl.hide1 > 0">
+      <!--question title, hides when editing-->
+      <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
+      <!--input shown when editing-->
+      <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
+      <md-button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</md-button>
+
+      <!--answers-->
+      <ol>
+        <li ng-repeat = "answer in qCtrl.asset[1] | unique track by $index">
+          <span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
+          <!--done editing and delete buttons-->
+          <md-button class = "showme" ng-show = "answerEditor" ng-click = "answerEditor = !answerEditor">done</md-button>
+          <md-button class = "showme" ng-show = "!answerEditor" ng-click = "qCtrl.killAnswer($index)">Delete Answer</md-button>
+          <input ng-show = "answerEditor" ng-model = "qCtrl.asset[1][$index]"/>
+        </li>
+      </ol>
+
+      <!--back, save and add answer buttons-->
+      <md-button ng-click = "qCtrl.backToQuestionSelector()">Back</md-button>
+      <md-button ng-click = "qCtrl.saveAsset()">Save</md-button>
+      <md-button ng-click = "qCtrl.addAnswer()">Add Answer</md-button>
+    </div><!--end checkboxes-->
+
+    <!--TEXTAREA QUESTION DATABINDING TEMPLATE-->
+    <div ng-show = "qCtrl.hide2 > 0">
+      <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
+      <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
+      <md-button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</md-button>
+
+      <!--answer area-->
+      <textarea ng-model = "qCtrl.asset[1][$index]" placeholder = "Your respondants will put their answers here!"/>
+
+      <!--back and save buttons-->
+      <md-button ng-click = "qCtrl.backToQuestionSelector()">Back</md-button>
+      <md-button ng-click = "qCtrl.saveAsset()">Save</md-button>
+    </div><!--end textarea-->
+
+    <!--RADIO QUESTION DATABINDING TEMPLATE-->
+    <div ng-show = "qCtrl.hide3 > 0">
+      <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
+      <!--input shown when editing-->
+      <input ng-show = "questionEditor" ng-model = "qCtrl.asset[0]"/>
+      <md-button class = "showme" ng-show = "questionEditor" ng-click = "questionEditor = !questionEditor">done</md-button>
+
+      <!--answers-->
+      <ol>
+        <li ng-repeat = "answer in qCtrl.asset[1] | unique track by $index">
+          <span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
+          <!--done editing and delete buttons-->
+          <md-button class = "showme" ng-show = "answerEditor" ng-click = "answerEditor = !answerEditor">done</md-button>
+          <md-button class = "showme" ng-show = "!answerEditor" ng-click = "qCtrl.killAnswer($index)">Delete Answer</md-button>
+          <input ng-show = "answerEditor" ng-model = "qCtrl.asset[1][$index]"/>
+        </li>
+      </ol>
+
+      <!--back, save and add answer buttons-->
+      <md-button ng-click = "qCtrl.backToQuestionSelector()">Back</md-button>
+      <md-button ng-click = "qCtrl.saveAsset()">Save</md-button>
+      <md-button ng-click = "qCtrl.addAnswer()">Add Answer</md-button>
+    </div><!--end radio-->
+  </div><!--end question maker-->
+
+  </div><!--end container--><!--end partial-->
+</div>

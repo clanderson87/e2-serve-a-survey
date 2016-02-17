@@ -1,7 +1,13 @@
 <div ng-controller="AuthCtrl as authCtrl">
-	
-	<h1>Hello World</h1>
+	<div layout="column"  layout-align="space-around center">
+		<h2>Welcome to Survey Skew!</h2>
 
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-	<button ng-click= "authCtrl.login()">I'm Mister Button</button>
+		<p>With Survey Skew you will be able to create surveys and take them.</p>
+
+		<p>Login with Google when you are ready to get started.</p>
+
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		
+		<md-button aria-label="Login" class="md-raised-primary" ng-click= "authCtrl.login()">Login</md-button>
+	</div>
 </div>

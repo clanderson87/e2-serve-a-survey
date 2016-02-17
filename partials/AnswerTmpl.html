@@ -1,0 +1,42 @@
+<div class = "container" layout="column"  layout-align="space-around stretch">
+  <ul>
+
+      <!--displaying one question only?-->
+      <h3>{{anCtrl.surveyArray[0][0]}}</h3>
+      <!--repeating question assets
+      <li ng-repeat = "question in anCtrl.surveyArray | limitTo: 1 | unique track by $index">
+        question title
+        <h2>{{question[0]}}</h2>-->
+
+        <!--display for checkboxes-->
+        <div ng-show = "anCtrl.surveyArray[0][2] === 'checkbox'">
+          <!--listing answers in question[1]array-->
+          <ul>
+            <li ng-repeat = "answer in anCtrl.surveyArray[0][1] | unique track by $index">
+              <md-button ng-click = "anCtrl.pushAnswerButtons(answer)">{{answer}}</md-button>
+            </li>
+          </ul>
+        </div><!--close checkboxes-->
+
+        <!--display for textarea-->
+        <div ng-show = "anCtrl.surveyArray[0][2] === 'textarea'">
+          <!--listing answers in anCtrl.SurveyArray[0][1] array-->
+          <ul>
+            <li ng-repeat = "answer in anCtrl.surveyArray[0][1] | unique track by $index">
+              <textarea ng-model = "anCtrl.responseAsset[0]" placeholder = "Put your answer here!"/>{{answer}}</textarea>
+            </li>
+          </ul>
+        </div><!--close textarea-->
+
+        <!--display for radio-->
+        <div ng-show = "anCtrl.surveyArray[0][2] === 'radio'">
+          <!--listing answers in anCtrl.SurveyArray[0][1] array-->
+          <ul>
+            <li ng-repeat = "answer in anCtrl.surveyArray[0][1] | unique track by $index">
+              <input type = "radio" ng-model = "anCtrl.responseAsset[0]" value = "{{answer}}" name = "{{anCtrl.surveyArray[0][0]}}"/>{{answer}}
+            </li>
+          </ul>
+        </div><!--close radio-->
+        <md-button class="submitColor" ng-click="anCtrl.submitAnswers()">Submit</md-button>
+  </ul>
+</div> 
