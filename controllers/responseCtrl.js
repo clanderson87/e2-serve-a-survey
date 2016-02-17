@@ -40,33 +40,35 @@ app.controller('responseCtrl',
           var thisSurveyObj = ref.child('answers').child(authData.uid).child(surveyTitle);
 
           thisSurveyObj.once('value', function(snapshot){
-            //making accessable questionObj
-            vm.questionObj = {};
+            //making accessable answerObj
+            vm.answerObj = {};
             snapshot.forEach(function(childSnapshot){
-              //trying to get questionNames to appear. Works!
+              //getting questionName
               var questionName = childSnapshot.key();
-              //making childSnapshot usable
-              var childData = childSnapshot.val();
-              //adding childData as a property in accessable questionObj
+              //snapshotception so we can make the returned object more shallow
+              //this repeats for each and every question in the survey object
               thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
                 //aliasing gCSnapshot as gCData
                 var grandChildData = grandChildSnapshot.val();
                 //making gCData accessable
                 vm.grandChildData = grandChildData
-                console.log("grandChildData is ", grandChildData);
+                //getting a loopable array of keys within grandChildData
                 var gcdKeys = Object.keys(grandChildData)
+                //looping through those keys to add their answers to answerObj
                 gcdKeys.forEach(function(key){
-                  vm.questionObj[questionName] = grandChildData[key];
+                  //checking is vm.answerObj has a [questionName] property
+                  if(vm.answerObj.hasOwnProperty([questionName]) === false){
+                    //if not, put the value of this key into that property
+                    vm.answerObj[questionName] = grandChildData[key];
+                  } else {
+                    //aliasing the array at the newly minted vm.answerObj[questionName] location so I can use .push without the console bithing me out
+                    var thisAnswerArray = vm.answerObj[questionName];
+                    //pushing the other keys into thisAnswerArray
+                    thisAnswerArray.push(grandChildData[key].toString());
+                  }
                 })
-                console.log(vm.questionObj)
             })
 
-            // vm.questionKeys = Object.keys(vm.questionObj);
-            // console.log("questionKeys is ", vm.questionKeys)
-            // vm.questionKeys.forEach(function(key){
-            //   console.log("vm.questionObj.keys is ", vm.questionObj[key])
-            //   var subKeys = Object.keys(vm.questionObj[key])
-            //   console.log("subKeys is ", subKeys)
             })
           })
         }
@@ -74,22 +76,3 @@ app.controller('responseCtrl',
 
 
 }])
-              // //snapshotCeption
-              //   //iterating over each answerKey in grandChildData
-              //   for (answerKey in grandChildData){
-              //     //pushing qustionName
-              //     if (questionArray.indexOf(questionName) < 1){
-              //       questionArray.push(questionName);
-              //     }
-              //     console.log("questionArray is ", questionArray);
-              //     //accessing and aliasing actual answer using gCData and answerKey
-              //     var grandChildAnswer = (grandChildData[answerKey]);
-              //     //instantiating packagable asset
-              //     var asset = [];
-              //     //pushing questionName and grandChildAnswer together in asset
-              //     asset.push(questionName, grandChildAnswer)
-              //     console.log("asset is ", asset)
-              //     //pushing the asset into an accessable array
-              //     vm.answerArray.push(asset);
-              //     console.log("vm.answerArray is ", vm.answerArray);
-              // }
