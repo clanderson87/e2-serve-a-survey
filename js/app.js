@@ -24,5 +24,9 @@ app.config(['$routeProvider', function($routeProvider){
       templateUrl: 'partials/AnswerTmpl.html',
       controller: 'AnswerCtrl as anCtrl'
     })
+    .when('/viewResponses', {
+      templateUrl: 'partials/responseTmpl.html',
+      controller: 'responseCtrl as rCtrl'
+    })
     .otherwise({ redirectTo: '/#' });
 }]);

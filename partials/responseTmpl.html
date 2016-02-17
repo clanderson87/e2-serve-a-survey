@@ -1,0 +1,18 @@
+<div class = "container">
+  <!--back to making a survey-->
+  <a href="#/makeSurvey">Back</a>
+
+  <!--buttons for user's surveys -->
+  <ul>
+    <li ng-repeat = "survey in rCtrl.surveyList">
+      <button ng-click = "rCtrl.displayResponses(survey.$id)">{{survey.$id}}</button>
+    </li>
+  </ul><!--end user surveys buttons-->
+
+  <ul><!--lists questions and answers-->
+    <li ng-repeat = "(key, value) in rCtrl.answerObj">
+      <!--question--><b><u>{{key}}:</u></b><br/>
+      <!--answers-->{{value.join(', ')}}
+    </li>
+  </ul><!--ends questions and answers-->
+</div><!--end container-->
