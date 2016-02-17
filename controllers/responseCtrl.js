@@ -42,16 +42,15 @@ app.controller('responseCtrl',
           thisSurveyObj.once('value', function(snapshot){
             //making accessable answerObj
             vm.answerObj = {};
+            //iterating over the snapshot of the survey for each question in the survey
             snapshot.forEach(function(childSnapshot){
               //getting questionName
               var questionName = childSnapshot.key();
-              //snapshotception so we can make the returned object more shallow
+              //snapshotCeption so we can make the returned object more shallow
               //this repeats for each and every question in the survey object
               thisSurveyObj.child(questionName).once('value', function(grandChildSnapshot){
-                //aliasing gCSnapshot as gCData
+                //aliasing gCSnapshot as gCData, making it usable
                 var grandChildData = grandChildSnapshot.val();
-                //making gCData accessable
-                vm.grandChildData = grandChildData
                 //getting a loopable array of keys within grandChildData
                 var gcdKeys = Object.keys(grandChildData)
                 //looping through those keys to add their answers to answerObj
@@ -67,10 +66,13 @@ app.controller('responseCtrl',
                     thisAnswerArray.push(grandChildData[key].toString());
                   }
                 })
+
             })
 
             })
+
           })
+          console.log(vm.answerObj);
         }
 
 
