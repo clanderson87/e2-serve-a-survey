@@ -15,6 +15,7 @@ app.config(['$routeProvider', function($routeProvider){
 		})
 		.when('/main', {
 			templateUrl: 'partials/mainPage.html',
+      controller: 'AuthCtrl as authCtrl'
 		})
     .when('/makeSurvey', {
       templateUrl: 'partials/questionTmpl.html',

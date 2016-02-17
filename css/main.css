@@ -18,8 +18,8 @@ md-checkbox.md-checked.green .md-icon {
 }
 
 /*Disabling Bullets On the Lists*/
-ul {
-  list-style-type:;
+#noBullets {
+  list-style-type: none;
 }
 
 /*Font Size for Main Buttons*/

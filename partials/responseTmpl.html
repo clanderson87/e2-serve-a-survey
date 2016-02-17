@@ -1,11 +1,11 @@
 <div class = "container">
   <!--back to making a survey-->
-  <a href="#/makeSurvey">Back</a>
+  <md-button a href="#/makeSurvey">Back</md-button>
 
   <!--buttons for user's surveys -->
-  <ul>
+  <ul layout="row"  layout-align="space-around center" id="noBullets">
     <li ng-repeat = "survey in rCtrl.surveyList">
-      <button ng-click = "rCtrl.displayResponses(survey.$id)">{{survey.$id}}</button>
+      <md-button ng-click = "rCtrl.displayResponses(survey.$id)" class="md-raised-primary">{{survey.$id}}</md-button>
     </li>
   </ul><!--end user surveys buttons-->
 

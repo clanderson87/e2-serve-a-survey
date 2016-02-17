@@ -5,18 +5,17 @@
     <input class = "surveyName"/>
 
     <md-button class="submitColor" ng-click = "qCtrl.setSurveyName()">submit</md-button>
-    <a href="#/viewResponses" ng-show = "qCtrl.authData">View responses</a>
   </div>
 
   <!--display buttons and button maker-->
   <div ng-show = "qCtrl.surveyName.length > 1">
 
   <!--main buttons to choose what kind of question to make-->
-    <md-button ng-click = "qCtrl.chooseCheckbox()" ng-hide = "qCtrl.hide4 > 0">Click me to create a Checkbox question, when you want your responders to have the ability to choose more than one answer!</md-button>
+    <md-button ng-click = "qCtrl.chooseCheckbox()" ng-hide = "qCtrl.hide4 > 0">Create a Multiple Choice Question</md-button>
 
-    <md-button ng-click = "qCtrl.chooseTextarea()" ng-hide = "qCtrl.hide4 > 0">Click me to create Textarea question,  when you want your responders to give you long winded explanations!</md-button>
+    <md-button ng-click = "qCtrl.chooseTextarea()" ng-hide = "qCtrl.hide4 > 0">Create a Fill in the Blank</md-button>
 
-    <md-button ng-click = "qCtrl.chooseRadio()" ng-hide = "qCtrl.hide4 > 0">Click me to create Radio questions, when you want your responders to give you just one answer! Nuance be damned!</md-button>
+    <md-button ng-click = "qCtrl.chooseRadio()" ng-hide = "qCtrl.hide4 > 0">Create a Radio Question</md-button>
 
     <!--button to save survey-->
     <md-button ng-click = "qCtrl.saveSurvey()" ng-show = "qCtrl.authData">Save Survey</md-button>
