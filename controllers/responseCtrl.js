@@ -61,15 +61,15 @@ app.controller('responseCtrl',
                     var thisAnswerArray = vm.answerObj[questionName];
                     //pushing the other keys into thisAnswerArray
                     thisAnswerArray.push(grandChildData[key].toString());
-                  }
-                })
+                  }//close if/else
+                })//close gcdKeys.forEach
 
-            })
+            })//close snapshotCeption
 
-            })
+            })//close snapshot
 
-          })
-        }
+          })//close thisSurveyObj.once
+        }//close vm.displayResponses
 
 
 
