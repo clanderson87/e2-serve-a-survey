@@ -5,6 +5,7 @@
     <h2>Enter a name for your survey</h2>
     <input class = "surveyName"/>
     <button ng-click = "qCtrl.setSurveyName()">submit</button>
+    <a href="#/viewResponses" ng-show = "qCtrl.authData">View responses</a>
   </div>
 
   <!--display buttons and button maker-->
@@ -19,7 +20,6 @@
 
     <!--button to save survey, access previous data-->
     <button ng-click = "qCtrl.saveSurvey()" ng-show = "qCtrl.authData">Save Survey</button>
-    <a href="/viewResponses" ng-show = "qCtrl.authData">View responses</a>
 
   <!--Show and hide logic for making question assets-->
 
