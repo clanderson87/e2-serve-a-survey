@@ -18,7 +18,6 @@ app.controller('AnswerCtrl',
         //accessing firebase
         var ref = refFactory.ref;
         var questionRef = refFactory.ref.child('questions');
-        // console.log(questionRef);
 
         //auth getters
         var authData = auth.$getAuth();
@@ -32,8 +31,6 @@ app.controller('AnswerCtrl',
 
         //answer asset
         vm.responseAsset = [];
-
-        vm.checkSwitch = false;
 
         vm.getFirebaseList = function(){
           //lists all surveys from Firebase
@@ -65,12 +62,19 @@ app.controller('AnswerCtrl',
 
         vm.pushAnswerButtons = function(index){
         //pushes answer into the responseAsset for button questions
+        //allows user to chose only up to the total number of maximum answers.
           if (vm.responseAsset.length < vm.surveyArray[0][1].length){
-            //allows user to chose only up to the total number of makimum answers.
-          vm.responseAsset.push(index)
-        }
-        console.log("after clicking, vm.responseAsset is ", vm.responseAsset)
-        };
+            //checks if this response is already in vm.responseAsset
+            console.log("vm.responseAsset.indexOf(index) is ", vm.responseAsset.indexOf(index))
+            if (vm.responseAsset.indexOf(index) != -1 ){
+              //if user has already selected this answer, then selecting it again will splice it out of  vm.responseAsset
+              vm.responseAsset.splice(index, 1);
+            } else {
+              //adds answer to vm.responseAsset
+              vm.responseAsset.push(index);
+            }//close sub-if/else
+          }//close if
+        }//close vm.pushAnswerButtons
 
         //pushes the responseAssets to firebase,
         vm.submitAnswers = function(){

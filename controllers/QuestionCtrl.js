@@ -22,10 +22,10 @@ app.controller('QuestionCtrl',
         }
 
         //setting up empty/global vars for questions and hides
-        var hide1= 0;
-        var hide2= 0;
-        var hide3= 0;
-        var hide4= 0;
+        var hide1 = 0;
+        var hide2 = 0;
+        var hide3 = 0;
+        var hide4 = 0;
         var asset = null;
         var surveyName = "";
 
@@ -48,7 +48,6 @@ app.controller('QuestionCtrl',
 
         vm.backToQuestionSelector = function(){
           //resets all hides and returns view back to main question selector
-
           vm.hide1 = 0;
           vm.hide2 = 0;
           vm.hide3 = 0;

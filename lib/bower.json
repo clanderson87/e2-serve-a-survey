@@ -22,5 +22,8 @@
     "Materialize": "materialize#^0.97.5",
     "angular-route": "^1.4.9",
     "angular-filter": "^0.5.8"
+  },
+  "resolutions": {
+    "angular": "^1.4.9"
   }
 }

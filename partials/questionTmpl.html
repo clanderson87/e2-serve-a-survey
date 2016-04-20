@@ -7,6 +7,7 @@
     <md-button class="submitColor" ng-click = "qCtrl.setSurveyName()">submit</md-button>
   </div>
 
+
   <!--display buttons and button maker-->
   <div ng-show = "qCtrl.surveyName.length > 1">
 
@@ -18,11 +19,12 @@
     <md-button ng-click = "qCtrl.chooseRadio()" ng-hide = "qCtrl.hide4 > 0">Create a Radio Question</md-button>
 
     <!--button to save survey-->
-    <md-button ng-click = "qCtrl.saveSurvey()" ng-show = "qCtrl.authData">Save Survey</md-button>
+    <br/><md-button class = "submitColor" ng-click = "qCtrl.saveSurvey()" ng-show = "qCtrl.authData">Save Survey</md-button>
 
   <!--Show and hide logic for making question assets-->
 
     <!--CHECKBOX QUESTION DATABINDING TEMPLATE-->
+    <!--need to add a fourth item to the asset that is the 'ideal' answer-->
     <div ng-show = "qCtrl.hide1 > 0">
       <!--question title, hides when editing-->
       <h3 ng-click = "questionEditor = !questionEditor" ng-hide = "questionEditor">{{qCtrl.asset[0]}}</h3>
@@ -85,6 +87,4 @@
       <md-button ng-click = "qCtrl.addAnswer()">Add Answer</md-button>
     </div><!--end radio-->
   </div><!--end question maker-->
-
-  </div><!--end container--><!--end partial-->
-</div>
+</div><!--end container--><!--end partial-->
