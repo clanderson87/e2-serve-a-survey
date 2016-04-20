@@ -106,6 +106,7 @@ app.controller('QuestionCtrl',
 
         vm.saveAsset = function(){
           //saves an asset to Firebase
+          idealAnswer = $('.idealBtn').val();//now I need to check if that's selected
           vm.asset.push(idealAnswer);
           ref.child("questions").child(vm.surveyName).push(vm.asset);
           console.log(vm.asset)
