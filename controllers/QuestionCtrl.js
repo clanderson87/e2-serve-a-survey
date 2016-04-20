@@ -59,7 +59,7 @@ app.controller('QuestionCtrl',
         vm.chooseCheckbox = function (){
           //this shows the multiple choice creation div and sets the multiple choice question asset
 
-          vm.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox", idealAnswer];
+          vm.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox"];
 
           vm.hide1 = 1;
           vm.hide2 = 0;
@@ -72,7 +72,7 @@ app.controller('QuestionCtrl',
         vm.chooseTextarea = function (){
           //this shows the multiple choice creation div and sets the textarea asset
 
-          vm.asset = ["Could you click this to create a textarea question?", [""], "textarea", idealAnswer];
+          vm.asset = ["Could you click this to create a textarea question?", [""], "textarea"];
           vm.hide1 = 0;
           vm.hide2 = 1;
           vm.hide3 = 0;
@@ -83,7 +83,7 @@ app.controller('QuestionCtrl',
         vm.chooseRadio = function(){
           //this shows the multiple choice creation div and sets the radio asset
 
-          vm.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio", idealAnswer];
+          vm.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio"];
           vm.hide1 = 0;
           vm.hide2 = 0;
           vm.hide3 = 1;
@@ -106,7 +106,7 @@ app.controller('QuestionCtrl',
 
         vm.saveAsset = function(){
           //saves an asset to Firebase
-
+          vm.asset.push(idealAnswer);
           ref.child("questions").child(vm.surveyName).push(vm.asset);
           console.log(vm.asset)
           vm.hide1 = 0;
