@@ -34,7 +34,10 @@
 
       <!--answers-->
       <ol>
+
         <li ng-repeat = "answer in qCtrl.asset[1] | unique track by $index">
+          <input type="radio" name = "ideal" class = "idealBtn"/>
+          <!--^^button for ideal selection -->
           <span ng-hide = "answerEditor" ng-click = "answerEditor = !answerEditor">{{answer}}</span>
           <!--done editing and delete buttons-->
           <md-button class = "showme" ng-show = "answerEditor" ng-click = "answerEditor = !answerEditor">done</md-button>
