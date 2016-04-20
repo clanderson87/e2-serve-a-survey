@@ -28,9 +28,11 @@ app.controller('QuestionCtrl',
         var hide4 = 0;
         var asset = null;
         var surveyName = "";
+        var idealAnswer = "";
 
         vm.asset = asset;
         vm.authData = authData;
+        vm.idealAnswer = idealAnswer;
 
         vm.createSurvey = function(){
           $location.path('/createSurvey');
@@ -57,7 +59,7 @@ app.controller('QuestionCtrl',
         vm.chooseCheckbox = function (){
           //this shows the multiple choice creation div and sets the multiple choice question asset
 
-          vm.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox"];
+          vm.asset = ["Would you like to click me and create your multiple choice question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "checkbox", idealAnswer];
 
           vm.hide1 = 1;
           vm.hide2 = 0;
@@ -70,7 +72,7 @@ app.controller('QuestionCtrl',
         vm.chooseTextarea = function (){
           //this shows the multiple choice creation div and sets the textarea asset
 
-          vm.asset = ["Could you click this to create a textarea question?", [""], "textarea"];
+          vm.asset = ["Could you click this to create a textarea question?", [""], "textarea", idealAnswer];
           vm.hide1 = 0;
           vm.hide2 = 1;
           vm.hide3 = 0;
@@ -81,7 +83,7 @@ app.controller('QuestionCtrl',
         vm.chooseRadio = function(){
           //this shows the multiple choice creation div and sets the radio asset
 
-          vm.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio"];
+          vm.asset = ["You wanna click me to ask a radio question?", ["Click me to edit answer 1", "Click me to edit answer 2", "Click me to edit answer 3"], "radio", idealAnswer];
           vm.hide1 = 0;
           vm.hide2 = 0;
           vm.hide3 = 1;
@@ -90,7 +92,6 @@ app.controller('QuestionCtrl',
 
         vm.addAnswer = function(){
           //adds an answer to the checkbox and radio function
-
           var x = vm.asset[1].length + 1
           var addedAnswer = "Click me to edit answer "+ x;
           console.log(vm.asset[1]);
@@ -100,7 +101,6 @@ app.controller('QuestionCtrl',
 
         vm.killAnswer = function(index){
           //deletes an answer from checkboxes and radios
-
           vm.asset[1].splice(index, 1);
         };//close killAnswer
 
@@ -119,7 +119,6 @@ app.controller('QuestionCtrl',
           //saves survey to firebase
           ref.child("questions").child(vm.surveyName).child("creator").set(authData.uid);
         }
-
 
       }//close controller function
   ] //close controller dependancies bracket
